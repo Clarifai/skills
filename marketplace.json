@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "repo": "Clarifai/skills",
+  "branch": "main",
+  "skills_path": ".github/skills",
+  "skills": [
+    {
+      "id": "clarifai-agentic-flows",
+      "name": "clarifai-agentic-flows",
+      "description": "Orchestrate multi-step Clarifai workflows. Use when the user needs to combine multiple Clarifai operations (e.g., \"upload AND train\", \"train THEN deploy\"), build end-to-end ML pipelines, or design composite workflows.",
+      "tags": ["workflow", "orchestration", "multi-step", "pipeline"]
+    },
+    {
+      "id": "clarifai-cli",
+      "name": "clarifai-cli",
+      "description": "Execute Clarifai operations using the `clarifai` CLI. Covers model init, serve, deploy, status, logs, undeploy, predict, compute orchestration, and all model/pipeline operations.",
+      "tags": ["cli", "deploy", "serve", "model", "pipeline", "auth"]
+    },
+    {
+      "id": "clarifai-datasets",
+      "name": "clarifai-datasets",
+      "description": "Upload and manage datasets on Clarifai platform. Covers image datasets with annotations (classification, detection, segmentation), data format conversion (COCO, VOC, YOLO), and DataLoader classes.",
+      "tags": ["dataset", "upload", "annotation", "classification", "detection"]
+    },
+    {
+      "id": "clarifai-deployment-lifecycle",
+      "name": "clarifai-deployment-lifecycle",
+      "description": "Manage the end-to-end lifecycle of Clarifai deployments. Covers CLI-first deploy/status/logs/undeploy workflow, version tracking, and state transition monitoring.",
+      "tags": ["deploy", "status", "logs", "undeploy", "lifecycle"]
+    },
+    {
+      "id": "clarifai-grpc",
+      "name": "clarifai-grpc",
+      "description": "Direct API interaction using Clarifai's gRPC client and protobufs. Use for low-level platform operations, complex multi-modal inputs, or log retrieval.",
+      "tags": ["grpc", "api", "protobuf", "low-level"]
+    },
+    {
+      "id": "clarifai-inference",
+      "name": "clarifai-inference",
+      "description": "Discover model capabilities and generate inference code. Covers model discovery, method signatures, code generation, OpenAI-compatible API, and agentic models with MCP tool calling.",
+      "tags": ["inference", "predict", "openai", "model", "agentic", "mcp"]
+    },
+    {
+      "id": "clarifai-mcp",
+      "name": "clarifai-mcp",
+      "description": "Create MCP (Model Context Protocol) servers on Clarifai. Covers MCPModelClass, StdioMCPModelClass, FastMCP tool definitions, and bridging external stdio MCP servers.",
+      "tags": ["mcp", "tools", "agentic", "fastmcp", "stdio"]
+    },
+    {
+      "id": "clarifai-model-upload",
+      "name": "clarifai-model-upload",
+      "description": "Upload and deploy custom models to Clarifai platform. Covers toolkit templates (vLLM, SGLang, Ollama, HuggingFace), ModelClass implementation, config.yaml, GPU configuration, and local testing.",
+      "tags": ["model", "upload", "deploy", "vllm", "sglang", "toolkit", "gpu"]
+    },
+    {
+      "id": "clarifai-observability",
+      "name": "clarifai-observability",
+      "description": "Debug and monitor Clarifai resources (Runners and Pipelines). Use when a deployment is stuck, crashing, or failing. Covers CLI logs, K8s events, and common resolution patterns.",
+      "tags": ["debug", "logs", "monitor", "observability", "events"]
+    },
+    {
+      "id": "clarifai-pipelines",
+      "name": "clarifai-pipelines",
+      "description": "Create and run Clarifai pipelines for batch processing and multi-step workflows. Covers containerized steps, Artifacts API for data transfer, and DAG orchestration.",
+      "tags": ["pipeline", "batch", "workflow", "artifacts", "etl"]
+    },
+    {
+      "id": "clarifai-training-pipelines",
+      "name": "clarifai-training-pipelines",
+      "description": "Train models using Clarifai pipeline templates. Covers built-in templates (classifier-pipeline-resnet, detector-pipeline-yolof) and custom training pipelines.",
+      "tags": ["training", "classifier", "detector", "resnet", "yolof"]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "clarifai-skills",
+  "owner": {
+    "name": "Clarifai",
+    "email": "engineering@clarifai.com"
+  },
+  "metadata": {
+    "description": "Clarifai AI platform skills for model deployment, inference, MCP servers, pipelines, and more."
+  },
+  "plugins": [
+    {
+      "name": "clarifai-skills",
+      "source": "./",
+      "description": "11 skills for the Clarifai AI platform: model init/serve/deploy, inference, MCP servers, pipelines, datasets, observability, and more.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Clarifai",
+        "email": "engineering@clarifai.com"
+      },
+      "homepage": "https://github.com/Clarifai/skills",
+      "repository": "https://github.com/Clarifai/skills",
+      "license": "MIT",
+      "keywords": [
+        "clarifai",
+        "model-deployment",
+        "inference",
+        "mcp",
+        "vllm",
+        "sglang",
+        "pipelines",
+        "datasets",
+        "observability"
+      ],
+      "category": "ai-ml",
+      "tags": [
+        "ai",
+        "ml",
+        "deployment",
+        "inference",
+        "mcp",
+        "pipelines"
+      ]
+    }
+  ]
+}
