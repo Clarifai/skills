@@ -67,54 +67,46 @@ print(code)
 
 ## gRPC Model Listing
 
+### Listing Featured LLMs
+
+Use `featured_only=True` **without** `model_type_id` to get Clarifai's ranked featured models, with `sort_by_modified_at=True` to preserve the platform rank order. Then filter client-side to LLM types. This is important because LLMs on Clarifai use two different model types: `text-to-text` and `multimodal-to-text`. Filtering by a single `model_type_id` will miss models of the other type.
+
 ```python
 import os
-from clarifai.client import Model
 from clarifai_grpc.channel.clarifai_channel import ClarifaiChannel
 from clarifai_grpc.grpc.api import service_pb2, service_pb2_grpc
 from clarifai_grpc.grpc.api.status import status_code_pb2
 
 PAT = os.environ["CLARIFAI_PAT"]
+LLM_TYPES = {"text-to-text", "multimodal-to-text"}
 
-def list_featured_models(max_models=10):
-    """List featured models with methods and OpenAI compatibility."""
+def list_featured_llms():
     channel = ClarifaiChannel.get_grpc_channel()
     stub = service_pb2_grpc.V2Stub(channel)
     metadata = (("authorization", f"Key {PAT}"),)
 
-    request = service_pb2.ListModelsRequest(
-        per_page=max_models,
-        featured_only=True
-    )
-    response = stub.ListModels(request, metadata=metadata)
+    all_models = []
+    for page in range(1, 6):
+        req = service_pb2.ListModelsRequest(
+            per_page=50,
+            page=page,
+            featured_only=True,
+            sort_by_modified_at=True,
+        )
+        resp = stub.ListModels(req, metadata=metadata)
+        if resp.status.code != status_code_pb2.SUCCESS or not resp.models:
+            break
+        all_models.extend(resp.models)
 
-    if response.status.code != status_code_pb2.SUCCESS:
-        raise Exception(f"Error: {response.status.description}")
-
-    results = []
-    for m in response.models:
-        model_url = f"https://clarifai.com/{m.user_id}/{m.app_id}/models/{m.id}"
-        try:
-            model = Model(url=model_url)
-            methods = list(model.available_methods())
-            has_openai = "openai_transport" in methods
-        except:
-            methods = []
-            has_openai = False
-
-        results.append({
-            "id": m.id,
-            "url": model_url,
-            "methods": [x for x in methods if "transport" not in x],
-            "openai_compatible": has_openai,
-        })
-    return results
-
-# Usage
-for m in list_featured_models():
-    tag = " [OpenAI]" if m["openai_compatible"] else ""
-    print(f"{m['id']}: {m['url']}")
-    print(f"  Methods: {', '.join(m['methods'])}{tag}\n")
+    return [
+        {
+            "url": f"https://clarifai.com/{m.user_id}/{m.app_id}/models/{m.id}",
+            "name": f"{m.user_id}/{m.id}",
+            "description": m.description,
+        }
+        for m in all_models
+        if m.model_type_id in LLM_TYPES
+    ]
 ```
 
 ## Method Selection Logic
