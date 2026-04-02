@@ -67,6 +67,8 @@ print(code)
 
 ## gRPC Model Listing
 
+> **Note:** If filtering featured models to LLMs client-side, check for both `text-to-text` and `multimodal-to-text` model types. Most modern LLMs (e.g. those with vision support) use `multimodal-to-text`.
+
 ```python
 import os
 from clarifai.client import Model
